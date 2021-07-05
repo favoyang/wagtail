@@ -603,6 +603,9 @@ class StreamBlockAdapter(Adapter):
             meta['helpText'] = help_text
             meta['helpIcon'] = get_help_icon()
 
+        # Add block class name to meta
+        meta['blockClass'] = block.__class__.__name__
+
         return [
             block.name,
             block.grouped_child_blocks(),
