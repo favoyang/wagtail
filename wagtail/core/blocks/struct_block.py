@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 from django.utils.functional import cached_property
 from django.utils.html import format_html, format_html_join
 from django.utils.safestring import mark_safe
+from django.utils.translation import gettext as _
 
 from wagtail.admin.staticfiles import versioned_static
 from wagtail.core.telepath import Adapter, register
@@ -291,12 +292,21 @@ class StructBlockAdapter(Adapter):
         meta = {
             'label': block.label, 'required': block.required, 'icon': block.meta.icon,
             'classname': block.meta.form_classname,
+            'strings': {
+                'EDIT': _("Click to edit"),
+            },
         }
+        # Add meta.preview from form_preview.
+        if hasattr(block.meta, "form_preview"):
+            meta["preview"] = block.meta.form_preview
 
         help_text = getattr(block.meta, 'help_text', None)
         if help_text:
             meta['helpText'] = help_text
             meta['helpIcon'] = get_help_icon()
+
+        # Add block class name to meta
+        meta['blockClass'] = block.__class__.__name__
 
         if block.meta.form_template:
             meta['formTemplate'] = block.render_form_template()

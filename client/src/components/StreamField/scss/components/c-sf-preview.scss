@@ -1,0 +1,55 @@
+.c-sf-block {
+    .struct-block {
+        .preview-part {
+            cursor: pointer;
+
+            dl {
+                margin: 0 0 5px 0;
+                padding: 2px;
+
+                >dt, >dd {
+                    display: inline-block;
+                    vertical-align: top;
+                    margin-bottom: 0;
+                }
+
+                >dt {
+                    background: #eee;
+                    width: 7rem;
+                    text-overflow: ellipsis;
+                    overflow-x: hidden;
+                    margin-right: 5px;
+                }
+
+                >dd {
+                    p {
+                        margin-bottom: 0;
+                    }
+                }
+
+                &.list-item {
+                    border: 1px dashed #ddd;
+                }
+            }
+
+            .nativecolorvalue {
+                min-width: 2rem;
+                display: inline-block;
+                height: 16px;
+                margin-right: 0.4rem;
+                margin-bottom: -3px;
+            }
+
+            .block-preview-richtext {
+                background-color: #d9d9d9;
+            }
+        }
+
+        .edit-prompt {
+            text-align: right;
+            border-bottom: 1px dashed #aaa;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+    }
+}

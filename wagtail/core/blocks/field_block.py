@@ -105,6 +105,14 @@ class FieldBlockAdapter(Adapter):
         if block.field.help_text:
             meta['helpText'] = block.field.help_text
 
+        # Add block class name to meta
+        meta['blockClass'] = block.__class__.__name__
+
+        # Add choices data to meta if available.
+        if hasattr(block.field, "choices"):
+            if block.field.choices.__class__.__name__ in ["CallableChoiceIterator", "list"]:
+                meta['choices'] = list(block.field.choices)
+
         return [
             block.name,
             block.field.widget,
